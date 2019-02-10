@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import SubscriptionList from './SubscriptionList'
 import SubscriptionDatails from '../components/SubscriptionDetails'
 import SubscriptionForm from '../components/SubscriptionForm'
@@ -10,18 +10,14 @@ const subscriptionsApi = BASEURL + '/subscriptions'
 class Main extends PureComponent {
     state = {
         subscriptions: [],
-        currentSubscription: '',
-        showDetails: false,
         currentRoute: '/subscriptions',
-        formType: '',
-        form: {
-            name: '',
-            price: '',
-            category: '',
-            due_date: '',
-            website: '',
-            card_number: ''
-        }
+        id: '',
+        name: '',
+        price: '',
+        category: '',
+        due_date: '',
+        website: '',
+        card_number: ''
     }
 
     componentDidMount() {
@@ -40,44 +36,113 @@ class Main extends PureComponent {
             body: JSON.stringify(subscriptionData)
         })
             .then(res => res.json())
-            .then(createdSubscription => this.setState({
-                subscriptions: [...this.state.subscriptions, createdSubscription],
-                currentSubscription: createdSubscription,
-                showDetails: true
-            }))
+            .then(createdSubscription => {
+                this.setState({
+                subscriptions: [...this.state.subscriptions, createdSubscription]
+                },
+                this.redirectToNewUrl(`/subscriptions/${createdSubscription.id}`))
+            })
+    }
+
+    editSubscription = (subscriptionData) => {
+        const id = subscriptionData.id
+		fetch(`${subscriptionsApi}/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(subscriptionData)
+		})
+			.then(res => res.json())
+			.then(updatedSubscription => {
+				const copyOfSubscriptionsArray = this.state.subscriptions.slice()
+                const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === updatedSubscription.id)
+                copyOfSubscriptionsArray.splice(index, 1, updatedSubscription)
+                this.setState({
+                    subscriptions: copyOfSubscriptionsArray
+                }) 
+                this.redirectToNewUrl(`/subscriptions/${updatedSubscription.id}`)
+			})
+    }
+
+    cancelSubscription = subscriptionObj => {
+        const id = subscriptionObj.id
+		fetch(`${subscriptionsApi}/${id}`, {
+			method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(deletedSubscription => {
+            const copyOfSubscriptionsArray = this.state.subscriptions.slice()
+            const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === deletedSubscription.id)
+            copyOfSubscriptionsArray.splice(index, 1)
+            this.setState({
+                subscriptions: copyOfSubscriptionsArray
+            }) 
+            this.redirectToNewUrl('/subscriptions')
+        })
+    }
+ 
+    redirectToNewUrl = (newUrl) => {
+        this.props.history.push(newUrl)
     }
 
     onFormChange = (e) => {
         const { name, value } = e.target
         this.setState({
-            form: {
-                ...this.state.form,
-                [name]: value
-            }
+            [name]: value
         })
     }
 
-    onFormSubmit = (e) => {
+    onFormCreate = (e) => {
         e.preventDefault()
-        this.createNewSubscription(this.state.form)
+        const data = {
+            id: this.state.id,
+            name: this.state.name,
+            price: this.state.price,
+            category: this.state.category,
+            due_date: this.state.due_date,
+            website: this.state.website,
+            card_number: this.state.card_number
+        }
+        this.createNewSubscription(data)
+    }
+
+    onFormEdit = (e) => {
+        e.preventDefault()
+        const data = {
+            id: this.state.id,
+            name: this.state.name,
+            price: this.state.price,
+            category: this.state.category,
+            due_date: this.state.due_date,
+            website: this.state.website,
+            card_number: this.state.card_number
+        }
+        this.editSubscription(data)
     }
 
     onDetailsClick = (subscriptionData) => {
-        this.setState({
-            showDetails: true,
-            currentSubscription: subscriptionData
-        })
-        setTimeout(this.showDetailsToDefault, 1)
+        this.redirectToNewUrl(`/subscriptions/${subscriptionData.id}`)
     }
 
-    showDetailsToDefault = () => {
-        this.setState({
-            showDetails: false
-        })
+    setFormStateOnEditClick = (subscriptionData) => {
+       this.setState({
+            id: subscriptionData.id,
+            name: subscriptionData.name,
+            price: subscriptionData.price,
+            category: subscriptionData.category,
+            due_date: subscriptionData.due_date,
+            website: subscriptionData.website,
+            card_number: subscriptionData.card_number
+       })
     }
 
-    onEditClick = () => {
-       
+    onEditClick = (subscriptionData) => {
+        this.setFormStateOnEditClick(subscriptionData)
+
+        this.redirectToNewUrl(`/subscriptions/${subscriptionData.id}/edit`)
+        
     }
 
     render() {
@@ -85,24 +150,19 @@ class Main extends PureComponent {
             <Fragment>
                 <Route exact path='/subscriptions' render={() => {
                     return (
-                        this.state.currentSubscription && this.state.showDetails ?
-                            <Redirect to={`/subscriptions/${this.state.currentSubscription.id}`} />
-                            :
-                            <SubscriptionList
-                                subscriptions={this.state.subscriptions}
-                                onClick={this.onDetailsClick}
-                            />
+                        <SubscriptionList
+                            subscriptions={this.state.subscriptions}
+                            onClick={this.onDetailsClick}
+                        />
                     )
                 }} />
                 <Route exact path='/subscriptions/new' render={props => {
                     return (
-                        !this.state.currentSubscription && !this.state.showDetails ?
-                            <SubscriptionForm
-                                onChange={this.onFormChange}
-                                onSubmit={this.onFormSubmit}
-                            />
-                            :
-                            <Redirect to={`/subscriptions/${this.state.currentSubscription.id}`} />
+                        <SubscriptionForm
+                            onChange={this.onFormChange}
+                            onSubmit={this.onFormCreate}
+                            formData={this.state}
+                        />
                     )
                 }} />
                 <Route exact path='/subscriptions/:id' render={props => {
@@ -110,14 +170,28 @@ class Main extends PureComponent {
                     const subscription = this.state.subscriptions.find(subs => (
                         subs.id === subscriptionIdInUrl
                     ))
-                    return (
-                        <SubscriptionDatails
-                            subscriptionData={subscription}
-                            resetShowDetails={this.showDetailsToDefault}
-                            onEditClick={this.onEditClick}
-                        />
-                    )
+                        return (
+                            <SubscriptionDatails
+                                subscriptionData={subscription}
+                                onEditClick={this.onEditClick}
+                                onCancelClick={this.cancelSubscription}
+                            />
+                        )
                 }} />
+                <Route exact path='/subscriptions/:id/edit' render={props => {
+                    const id = parseInt(props.match.params.id)
+                    const subscriptionData = this.state.subscriptions.find(subs => (
+                        subs.id === id
+                    ))
+                    return (
+                        <SubscriptionForm 
+                            subscriptionData={subscriptionData}
+                            onChange={this.onFormChange}
+                            onSubmit={this.onFormEdit}
+                            formData={this.state}
+                        />
+                    ) 
+                }}/>
             </Fragment>
         )
     }

@@ -12,7 +12,8 @@ const SubscriptionDetails = props => {
                 <h3>Website: {website}</h3>
                 <h3>Card Number: {card_number}</h3>
                 <h3>Due Date: {due_date}</h3>
-                <button onClick={props.onEditClick}>Edit</button>
+                <button onClick={() => props.onEditClick(props.subscriptionData)}>Edit</button>
+                <button onClick={() => props.onCancelClick(props.subscriptionData)}>Cancel</button>
             </div>
         )
     }else{

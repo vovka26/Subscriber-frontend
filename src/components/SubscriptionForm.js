@@ -1,6 +1,7 @@
 import React from 'react';
 
 const SubscriptionForm = props => {
+	
     return(
         <form onSubmit={props.onSubmit}>
             <label>
@@ -9,7 +10,7 @@ const SubscriptionForm = props => {
 					onChange={props.onChange} 
 					type="text" 
 					name="name" 
-					
+					value={props.formData.name}
 				/>
 				</label><br />
 				<label>
@@ -18,6 +19,7 @@ const SubscriptionForm = props => {
 					onChange={props.onChange} 
 					type="number" 
 					name="price" 
+					value={props.formData.price}
 					 />
 				</label><br />
 				<label>
@@ -26,6 +28,7 @@ const SubscriptionForm = props => {
 					onChange={props.onChange} 
 					type="text" 
 					name="website" 
+					value={props.formData.website}
 					/>
 				</label><br />
 				<label>
@@ -33,6 +36,7 @@ const SubscriptionForm = props => {
 				<select 
 					onChange={props.onChange} 
 					name='category'
+					value={props.formData.category}
 				>
 						<option value='other'>Other</option>
 						<option value='shopping'>Shopping</option>
@@ -48,6 +52,7 @@ const SubscriptionForm = props => {
 					onChange={props.onChange} 
 					type="text" 
 					name="due_date" 
+					value={props.formData.due_date}
 					/>
 				</label><br />
 				<label>
@@ -56,6 +61,7 @@ const SubscriptionForm = props => {
 					onChange={props.onChange} 
 					type="number" 
 					name="card_number" 
+					value={props.formData.card_number}
 					 />
 				</label><br />
 				<input type="submit" name="Submit" />

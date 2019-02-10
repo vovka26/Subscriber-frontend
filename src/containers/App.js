@@ -14,8 +14,6 @@ class App extends Component {
 			<NavBar />
 			<Switch>
 				<Route path='/dashboard' component={Dashboard} />
-				<Route path='/subscriptions/new' component={Main} />
-				<Route path='/subscriptions/:id' component={Main}/>
 				<Route path='/subscriptions' component={Main}/>
 				<Route component={About} />
 			</Switch>
