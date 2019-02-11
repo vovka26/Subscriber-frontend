@@ -4,6 +4,7 @@ import SubscriptionList from './SubscriptionList'
 import SubscriptionDatails from '../components/SubscriptionDetails'
 import SubscriptionForm from '../components/SubscriptionForm'
 
+
 const BASEURL = 'http://localhost:4000/api/v1'
 const subscriptionsApi = BASEURL + '/subscriptions'
 
@@ -15,7 +16,7 @@ class Main extends PureComponent {
         name: '',
         price: '',
         category: '',
-        due_date: '',
+        due_date: null,
         website: '',
         card_number: ''
     }
@@ -94,6 +95,12 @@ class Main extends PureComponent {
         })
     }
 
+    onDateChange = (date) => {
+        this.setState({
+            due_date: date
+        })
+    }
+
     onFormCreate = (e) => {
         e.preventDefault()
         const data = {
@@ -140,9 +147,7 @@ class Main extends PureComponent {
 
     onEditClick = (subscriptionData) => {
         this.setFormStateOnEditClick(subscriptionData)
-
         this.redirectToNewUrl(`/subscriptions/${subscriptionData.id}/edit`)
-        
     }
 
     render() {
@@ -162,6 +167,8 @@ class Main extends PureComponent {
                             onChange={this.onFormChange}
                             onSubmit={this.onFormCreate}
                             formData={this.state}
+                            type='Create'
+                            onDateChange={this.onDateChange}
                         />
                     )
                 }} />
@@ -189,6 +196,8 @@ class Main extends PureComponent {
                             onChange={this.onFormChange}
                             onSubmit={this.onFormEdit}
                             formData={this.state}
+                            onDateChange={this.onDateChange}
+                            type='Save'
                         />
                     ) 
                 }}/>

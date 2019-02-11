@@ -1,4 +1,8 @@
 import React from 'react';
+import { Button} from 'semantic-ui-react'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const SubscriptionForm = props => {
 	
@@ -48,12 +52,19 @@ const SubscriptionForm = props => {
 				</label><br />
 				<label>
 					Due Date:
-				<input 
+				{/* <input 
 					onChange={props.onChange} 
 					type="text" 
 					name="due_date" 
 					value={props.formData.due_date}
-					/>
+				/> */}
+				 <DatePicker
+				 	dateFormat='yyyy/MM/dd'
+					selected={props.formData.due_date}
+					name='due_date'
+					onChange={props.onDateChange}
+					placeholderText="Click to select a date" 
+				/>
 				</label><br />
 				<label>
 					Card Number:
@@ -64,7 +75,7 @@ const SubscriptionForm = props => {
 					value={props.formData.card_number}
 					 />
 				</label><br />
-				<input type="submit" name="Submit" />
+				<Button positive type="submit">{props.type}</Button>
         </form>
     )
 }
