@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import SubscriptionList from './SubscriptionList'
 import SubscriptionDatails from '../components/SubscriptionDetails'
 import SubscriptionForm from '../components/SubscriptionForm'
+import Dashboard from '../components/Dashboard';
 
 
 const BASEURL = 'http://localhost:4000/api/v1'
@@ -113,6 +114,7 @@ class Main extends PureComponent {
             card_number: this.state.card_number
         }
         this.createNewSubscription(data)
+        this.clearForm()
     }
 
     onFormEdit = (e) => {
@@ -127,6 +129,19 @@ class Main extends PureComponent {
             card_number: this.state.card_number
         }
         this.editSubscription(data)
+        this.clearForm()
+    }
+
+    clearForm = () => {
+        this.setState({
+            id: '',
+            name: '',
+            price: '',
+            category: '',
+            due_date: null,
+            website: '',
+            card_number: ''
+        })
     }
 
     onDetailsClick = (subscriptionData) => {
@@ -153,6 +168,12 @@ class Main extends PureComponent {
     render() {
         return (
             <Fragment>
+                <Route path='/dashboard' render={() => {
+                    return(
+                    <Dashboard 
+                        subscriptions={this.state.subscriptions}  
+                    />)
+                }}/>
                 <Route exact path='/subscriptions' render={() => {
                     return (
                         <SubscriptionList
@@ -167,8 +188,8 @@ class Main extends PureComponent {
                             onChange={this.onFormChange}
                             onSubmit={this.onFormCreate}
                             formData={this.state}
-                            type='Create'
                             onDateChange={this.onDateChange}
+                            type='Create'
                         />
                     )
                 }} />

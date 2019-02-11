@@ -61,7 +61,6 @@ const SubscriptionForm = props => {
 				 <DatePicker
 				 	dateFormat='yyyy/MM/dd'
 					selected={props.formData.due_date}
-					name='due_date'
 					onChange={props.onDateChange}
 					placeholderText="Click to select a date" 
 				/>

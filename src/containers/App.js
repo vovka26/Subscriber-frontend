@@ -4,7 +4,7 @@ import '../App.css';
 import NavBar from './NavBar';
 import Main from './Main';
 import About from './About'
-import Dashboard from '../components/Dashboard';
+
 
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
     	<div className="App">
 			<NavBar />
 			<Switch>
-				<Route path='/dashboard' component={Dashboard} />
+				<Route path='/dashboard' component={Main} />
 				<Route path='/subscriptions' component={Main}/>
 				<Route component={About} />
 			</Switch>
