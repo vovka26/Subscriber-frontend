@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
-import "react-datepicker/dist/react-datepicker.css";
 import '../SubscriptionForm.css'
 
 

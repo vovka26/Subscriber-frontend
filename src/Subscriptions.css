@@ -19,3 +19,8 @@ div.ui.grid.centered.upcoming-payments-details {
 .subscription-details {
     text-align: center;
 }
+
+.website:hover {
+    text-decoration: underline;
+    color: blue;
+}
