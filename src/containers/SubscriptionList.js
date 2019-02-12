@@ -14,7 +14,7 @@ const SubscriptionList = (props) => {
                     <Table.Row>
                         <Table.HeaderCell width='seven'>Name</Table.HeaderCell>
                         <Table.HeaderCell width='three'>Due</Table.HeaderCell>
-                        <Table.HeaderCell width='two'>Payment</Table.HeaderCell>
+                        <Table.HeaderCell width='two'>Price</Table.HeaderCell>
                         <Table.HeaderCell width='two'>Card</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

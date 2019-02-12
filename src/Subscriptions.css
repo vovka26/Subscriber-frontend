@@ -12,8 +12,10 @@ div.upcoming-payments-div {
     margin: 3%;
 }
 
-
-
 div.ui.grid.centered.upcoming-payments-details {
     margin-top: 3%;
+}
+
+.subscription-details {
+    text-align: center;
 }

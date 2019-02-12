@@ -59,8 +59,12 @@ class Main extends PureComponent {
             .then(res => res.json())
             .then(updatedSubscription => {
                 const copyOfSubscriptionsArray = this.state.subscriptions.slice()
-                const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === updatedSubscription.id)
+
+                const index = copyOfSubscriptionsArray.findIndex(subscription => (
+                    subscription.id === updatedSubscription.id
+                ))
                 copyOfSubscriptionsArray.splice(index, 1, updatedSubscription)
+
                 this.setState({
                     subscriptions: copyOfSubscriptionsArray
                 })
@@ -76,8 +80,12 @@ class Main extends PureComponent {
             .then(res => res.json())
             .then(deletedSubscription => {
                 const copyOfSubscriptionsArray = this.state.subscriptions.slice()
-                const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === deletedSubscription.id)
+                
+                const index = copyOfSubscriptionsArray.findIndex(subscription => (
+                    subscription.id === deletedSubscription.id
+                ))
                 copyOfSubscriptionsArray.splice(index, 1)
+
                 this.setState({
                     subscriptions: copyOfSubscriptionsArray
                 })

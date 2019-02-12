@@ -5,3 +5,7 @@
 .ui.fitted.slider.checkbox.slider {
     margin-right: 2%;
 }
+
+div.chartjs-size-monitor {
+    height: 80%;
+}

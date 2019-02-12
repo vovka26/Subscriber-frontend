@@ -53,27 +53,30 @@ class Dashboard extends PureComponent {
 		if (this.props.subscriptions) {
 			return (
 				<Fragment>
-					<div className='ui grid centered'>
-						Bar Chart
+					<div className='dashboard-chart'>
+						<div className='ui grid centered'>
+							Bar Chart
 						<Checkbox
-							className='slider'
-							slider
-							checked={this.state.checked}
-							onClick={this.handleSliderChange}
-						/>
-						Doughnut Chart
+								className='slider'
+								slider
+								checked={this.state.checked}
+								onClick={this.handleSliderChange}
+							/>
+							Doughnut Chart
 					</div>
-					{this.state.checked ?
-						<DoughnutChart
-							subscriptions={this.props.subscriptions}
-							data={this.data()}
-						/>
-						:
-						<BarChart
-							subscriptions={this.props.subscriptions}
-							data={this.data()}
-						/>
-					}
+						{this.state.checked ?
+							<DoughnutChart
+								subscriptions={this.props.subscriptions}
+								data={this.data()}
+							/>
+							:
+							<BarChart
+								subscriptions={this.props.subscriptions}
+								data={this.data()}
+							/>
+
+						}
+					</div>
 				</Fragment>
 			)
 		} else {

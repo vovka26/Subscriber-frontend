@@ -5,8 +5,8 @@ const SubscriptionDetails = props => {
     if (props.subscriptionData) {
         const { name, category, price, website, card_number, due_date } = props.subscriptionData
         return (
-            <div>
-                <h1>Name: {name}</h1>
+            <div className='subscription-details'>
+                <h1>{name}</h1>
                 <h3>Category: {category}</h3>
                 <h3>Price: {price}</h3>
                 <h3>Website: {website}</h3>

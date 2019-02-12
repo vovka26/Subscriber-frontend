@@ -2,3 +2,14 @@
     margin-left: 3px;
     margin-right: 3px;
 }
+
+.ui.stackable.nav-bar.menu {
+    margin-bottom: 3%;
+}
+
+.login-form {
+    width: 60%;
+    margin: auto;
+    margin-top: 20%;
+    text-align: center;
+}
