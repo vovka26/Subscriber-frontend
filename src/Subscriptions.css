@@ -7,3 +7,13 @@
     margin: auto;
     margin-bottom: 2%;
 }
+
+div.upcoming-payments-div {
+    margin: 3%;
+}
+
+
+
+div.ui.grid.centered.upcoming-payments-details {
+    margin-top: 3%;
+}

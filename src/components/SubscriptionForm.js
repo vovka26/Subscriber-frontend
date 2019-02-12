@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import "react-datepicker/dist/react-datepicker.css";
+import '../SubscriptionForm.css'
 
 
 const selectOptions = [
@@ -18,7 +19,7 @@ const selectOptions = [
 const SubscriptionForm = props => {
 
 	return (
-		<Form onSubmit={props.onSubmit}>
+		<Form className='subscription-form' onSubmit={props.onSubmit}>
 			<Form.Input
 				fluid label='Name'
 				name='name'
@@ -64,7 +65,7 @@ const SubscriptionForm = props => {
 				value={props.formData.due_date}
 			/>
 
-			<Button positive type="submit">{props.type}</Button>
+			<Button positive type="submit" className='form-submit-button'>{props.type}</Button>
 		</Form>
 	)
 }

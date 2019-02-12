@@ -5,6 +5,7 @@ const SubscriptionCard = props => {
     return (
         <Fragment>
             <Table.Cell> {props.subscriptionData.name}</Table.Cell>
+            <Table.Cell> {props.subscriptionData.due_date.split('2019-')[1]} </Table.Cell>
             <Table.Cell> ${props.subscriptionData.price}</Table.Cell>
             <Table.Cell>{props.subscriptionData.card_number}</Table.Cell>
         </Fragment>

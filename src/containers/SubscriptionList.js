@@ -12,9 +12,10 @@ const SubscriptionList = (props) => {
             <Table className='subscriptions-table' fixed selectable>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell width='eight'>Name</Table.HeaderCell>
-                        <Table.HeaderCell width='three'>Montly Payment</Table.HeaderCell>
-                        <Table.HeaderCell width='three'>Card</Table.HeaderCell>
+                        <Table.HeaderCell width='seven'>Name</Table.HeaderCell>
+                        <Table.HeaderCell width='three'>Due</Table.HeaderCell>
+                        <Table.HeaderCell width='two'>Payment</Table.HeaderCell>
+                        <Table.HeaderCell width='two'>Card</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 

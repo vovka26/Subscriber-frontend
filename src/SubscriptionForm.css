@@ -1,0 +1,10 @@
+.ui.positive.button.form-submit-button {
+    margin: auto;
+    display: inherit;
+    margin-top: 1%;
+}
+
+.ui.form.subscription-form {
+    width: 70%;
+    margin: auto;
+}
