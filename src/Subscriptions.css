@@ -24,3 +24,14 @@ div.ui.grid.centered.upcoming-payments-details {
     text-decoration: underline;
     color: blue;
 }
+
+.subscription-list-container {
+    background-color: #ffffffd9;
+}
+
+.subscription-details {
+    background-color: #ffffffd9;
+    width: 60%;
+    margin: auto;
+    margin-top: 10%;
+}

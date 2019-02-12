@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from 'semantic-ui-react'
 
 const SubscriptionDetails = props => {
     //renders null on the first load before fetch request to avoid an error
@@ -12,8 +13,16 @@ const SubscriptionDetails = props => {
                 <h3> Website:<div onClick={()=> window.open(website, '_blank')} className='website'>{website}</div></h3>
                 <h3>Card Number: {card_number}</h3>
                 <h3>Due Date: {due_date}</h3>
-                <button onClick={() => props.onEditClick(props.subscriptionData)}>Edit</button>
-                <button onClick={() => props.onCancelClick(props.subscriptionData)}>Cancel</button>
+                <Button 
+                    onClick={() => props.onEditClick(props.subscriptionData)}
+                >
+                    Edit    
+                </Button>
+                <Button 
+                    onClick={() => props.onCancelClick(props.subscriptionData)}
+                >
+                    Cancel
+                </Button>
             </div>
         )
     } else {

@@ -32,7 +32,7 @@ const TotalSpending = (props) => {
         const inputDate = new Date(`${date} GMT-0500`)
         const endDate = new Date()
         endDate.setDate(endDate.getDate() + 7)
-        if (inputDate < endDate) {
+        if (inputDate < endDate && inputDate > new Date()) {
             return true
         }
     }
@@ -40,7 +40,7 @@ const TotalSpending = (props) => {
     const totalAmount = (data) => {
         let amount = 0
         data.map(subs => amount += subs.price)
-        return amount
+        return amount.toFixed(2)
     }
     return (
         <Fragment>

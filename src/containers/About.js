@@ -1,8 +1,17 @@
 import React from 'react'
+import {Image} from 'semantic-ui-react'
+import logoImage from '../logo-index.png'
+import '../App.css'
 
 const About = () => {
     return(
-        <div>About page</div>
+        <div className='ui grid centered'>
+            <Image 
+                className='logo-image'
+                src={logoImage}
+
+            />
+        </div>
     )
 }
 

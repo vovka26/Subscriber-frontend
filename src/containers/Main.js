@@ -68,7 +68,7 @@ class Main extends PureComponent {
                 this.setState({
                     subscriptions: copyOfSubscriptionsArray
                 })
-                this.redirectToNewUrl(`/subscriptions/${updatedSubscription.id}`)
+                this.redirectToNewUrl(`/subscriptions`)
             })
     }
 
@@ -179,6 +179,14 @@ class Main extends PureComponent {
         this.redirectToNewUrl(`/subscriptions/${subscriptionData.id}/edit`)
     }
 
+    // sortSubscriptionsRows = (e) => {
+    //     const copyOfSubscriptionsArray = this.state.subscriptions.slice()
+    //     debugger
+    //     this.setState({
+
+    //     })
+    // }
+
     render() {
         return (
             <Fragment>
@@ -191,6 +199,7 @@ class Main extends PureComponent {
                 <Route exact path='/subscriptions' render={() => {
                     return (
                         <SubscriptionList
+                            sortRows={this.sortSubscriptionsRows}
                             subscriptions={this.state.subscriptions}
                             onClick={this.onDetailsClick}
                         />

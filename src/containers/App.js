@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Main from './Main';
 import About from './About'
 import Login from '../components/Login'
+import '../public/favicon.svg';
 
 
 
@@ -21,7 +22,7 @@ class App extends Component {
 	}
 
 	onLoginSubmit = () => {
-		// console.log('submitting ', this.state.username, this.state.password)
+		console.log('submitting ', this.state.username, this.state.password)
 	}
 
 	render() {

@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import {Form, Button} from 'semantic-ui-react'
-import '../App.css'
+import '../Login.css'
 
 class Login extends PureComponent {
     render(){
@@ -8,11 +8,13 @@ class Login extends PureComponent {
             <div className='login-form'>
                 <Form onSubmit={this.props.onSubmit}>
                     <Form.Input 
+                        className='login-input'
                         onChange={this.props.setField}
                         name='username'
                         fluid label='Username'
                     />
                     <Form.Input 
+                        className='login-input'
                         onChange={this.props.setField}
                         name='password'
                         type='password'

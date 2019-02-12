@@ -3,11 +3,13 @@ import { NavLink, Link } from 'react-router-dom';
 import { Menu, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import '../App.css'
+import logo from '../logo.png'
+
 
 const NavBar = (props) => {
     return (
         <Menu stackable className='nav-bar'>
-            <Menu.Item position='left' as={NavLink} to='/about'><i className='money icon'></i></Menu.Item>
+            <Menu.Item position='left' as={NavLink} to='/about'><img className='logo-image' src={logo} alt='logo' /></Menu.Item>
 
             <Menu.Item
                 as={NavLink}
@@ -27,8 +29,8 @@ const NavBar = (props) => {
                     as={Link}
                     to='/login'
                 >
-                    Log-in
-            </Button>
+                    Login
+                </Button>
             </Menu.Item>
         </Menu>
     )
