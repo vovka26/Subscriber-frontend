@@ -17,7 +17,7 @@ class Main extends PureComponent {
         name: '',
         price: '',
         category: '',
-        due_date: null,
+        due_date: '',
         website: '',
         card_number: ''
     }
@@ -40,51 +40,51 @@ class Main extends PureComponent {
             .then(res => res.json())
             .then(createdSubscription => {
                 this.setState({
-                subscriptions: [...this.state.subscriptions, createdSubscription]
+                    subscriptions: [...this.state.subscriptions, createdSubscription]
                 },
-                this.redirectToNewUrl(`/subscriptions/${createdSubscription.id}`))
+                    this.redirectToNewUrl(`/subscriptions/`))
             })
     }
 
     editSubscription = (subscriptionData) => {
         const id = subscriptionData.id
-		fetch(`${subscriptionsApi}/${id}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			},
-			body: JSON.stringify(subscriptionData)
-		})
-			.then(res => res.json())
-			.then(updatedSubscription => {
-				const copyOfSubscriptionsArray = this.state.subscriptions.slice()
+        fetch(`${subscriptionsApi}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(subscriptionData)
+        })
+            .then(res => res.json())
+            .then(updatedSubscription => {
+                const copyOfSubscriptionsArray = this.state.subscriptions.slice()
                 const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === updatedSubscription.id)
                 copyOfSubscriptionsArray.splice(index, 1, updatedSubscription)
                 this.setState({
                     subscriptions: copyOfSubscriptionsArray
-                }) 
+                })
                 this.redirectToNewUrl(`/subscriptions/${updatedSubscription.id}`)
-			})
+            })
     }
 
     cancelSubscription = subscriptionObj => {
         const id = subscriptionObj.id
-		fetch(`${subscriptionsApi}/${id}`, {
-			method: 'DELETE'
+        fetch(`${subscriptionsApi}/${id}`, {
+            method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(deletedSubscription => {
-            const copyOfSubscriptionsArray = this.state.subscriptions.slice()
-            const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === deletedSubscription.id)
-            copyOfSubscriptionsArray.splice(index, 1)
-            this.setState({
-                subscriptions: copyOfSubscriptionsArray
-            }) 
-            this.redirectToNewUrl('/subscriptions')
-        })
+            .then(res => res.json())
+            .then(deletedSubscription => {
+                const copyOfSubscriptionsArray = this.state.subscriptions.slice()
+                const index = copyOfSubscriptionsArray.findIndex(subscription => subscription.id === deletedSubscription.id)
+                copyOfSubscriptionsArray.splice(index, 1)
+                this.setState({
+                    subscriptions: copyOfSubscriptionsArray
+                })
+                this.redirectToNewUrl('/subscriptions')
+            })
     }
- 
+
     redirectToNewUrl = (newUrl) => {
         this.props.history.push(newUrl)
     }
@@ -96,9 +96,15 @@ class Main extends PureComponent {
         })
     }
 
-    onDateChange = (date) => {
+    onSelectCategory = (e, { value }) => {
         this.setState({
-            due_date: date
+            category: value
+        })
+    }
+
+    onDateChange = (e, { value }) => {
+        this.setState({
+            due_date: value
         })
     }
 
@@ -149,7 +155,7 @@ class Main extends PureComponent {
     }
 
     setFormStateOnEditClick = (subscriptionData) => {
-       this.setState({
+        this.setState({
             id: subscriptionData.id,
             name: subscriptionData.name,
             price: subscriptionData.price,
@@ -157,7 +163,7 @@ class Main extends PureComponent {
             due_date: subscriptionData.due_date,
             website: subscriptionData.website,
             card_number: subscriptionData.card_number
-       })
+        })
     }
 
     onEditClick = (subscriptionData) => {
@@ -169,11 +175,11 @@ class Main extends PureComponent {
         return (
             <Fragment>
                 <Route path='/dashboard' render={() => {
-                    return(
-                    <Dashboard 
-                        subscriptions={this.state.subscriptions}  
-                    />)
-                }}/>
+                    return (
+                        <Dashboard
+                            subscriptions={this.state.subscriptions}
+                        />)
+                }} />
                 <Route exact path='/subscriptions' render={() => {
                     return (
                         <SubscriptionList
@@ -189,6 +195,7 @@ class Main extends PureComponent {
                             onSubmit={this.onFormCreate}
                             formData={this.state}
                             onDateChange={this.onDateChange}
+                            onSelect={this.onSelectCategory}
                             type='Create'
                         />
                     )
@@ -198,13 +205,13 @@ class Main extends PureComponent {
                     const subscription = this.state.subscriptions.find(subs => (
                         subs.id === subscriptionIdInUrl
                     ))
-                        return (
-                            <SubscriptionDatails
-                                subscriptionData={subscription}
-                                onEditClick={this.onEditClick}
-                                onCancelClick={this.cancelSubscription}
-                            />
-                        )
+                    return (
+                        <SubscriptionDatails
+                            subscriptionData={subscription}
+                            onEditClick={this.onEditClick}
+                            onCancelClick={this.cancelSubscription}
+                        />
+                    )
                 }} />
                 <Route exact path='/subscriptions/:id/edit' render={props => {
                     const id = parseInt(props.match.params.id)
@@ -212,7 +219,7 @@ class Main extends PureComponent {
                         subs.id === id
                     ))
                     return (
-                        <SubscriptionForm 
+                        <SubscriptionForm
                             subscriptionData={subscriptionData}
                             onChange={this.onFormChange}
                             onSubmit={this.onFormEdit}
@@ -220,8 +227,8 @@ class Main extends PureComponent {
                             onDateChange={this.onDateChange}
                             type='Save'
                         />
-                    ) 
-                }}/>
+                    )
+                }} />
             </Fragment>
         )
     }

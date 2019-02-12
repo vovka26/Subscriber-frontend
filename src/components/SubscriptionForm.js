@@ -1,82 +1,72 @@
 import React from 'react';
-import { Button} from 'semantic-ui-react'
-import DatePicker from "react-datepicker";
+import { Button, Form } from 'semantic-ui-react'
+import { DateInput } from 'semantic-ui-calendar-react';
 import "react-datepicker/dist/react-datepicker.css";
 
 
+const selectOptions = [
+	{ text: 'Shopping', value: 'Shopping' },
+	{ text: 'Entertainment', value: 'Entertainment' },
+	{ text: 'Food', value: 'Food' },
+	{ text: 'Health', value: 'Health' },
+	{ text: 'Hygiene', value: 'Hygiene' },
+	{ text: 'Bills', value: 'Bills' },
+	{ text: 'Other', value: 'Other' }
+]
+
+
 const SubscriptionForm = props => {
-	
-    return(
-        <form onSubmit={props.onSubmit}>
-            <label>
-					Name:
-				<input 
-					onChange={props.onChange} 
-					type="text" 
-					name="name" 
-					value={props.formData.name}
-				/>
-				</label><br />
-				<label>
-					Price:
-				<input 
-					onChange={props.onChange} 
-					type="number" 
-					name="price" 
-					value={props.formData.price}
-					 />
-				</label><br />
-				<label>
-					Website:
-				<input 
-					onChange={props.onChange} 
-					type="text" 
-					name="website" 
-					value={props.formData.website}
-					/>
-				</label><br />
-				<label>
-					Category:
-				<select 
-					onChange={props.onChange} 
-					name='category'
-					value={props.formData.category}
-				>
-						<option value='other'>Other</option>
-						<option value='shopping'>Shopping</option>
-						<option value='entartainment'>Entartainment</option>
-						<option value='grocery'>Grocery</option>
-						<option value='health'>Health</option>
-						<option value='hygiene'>Hygiene</option>
-					</select>
-				</label><br />
-				<label>
-					Due Date:
-				{/* <input 
-					onChange={props.onChange} 
-					type="text" 
-					name="due_date" 
-					value={props.formData.due_date}
-				/> */}
-				 <DatePicker
-				 	dateFormat='yyyy/MM/dd'
-					selected={props.formData.due_date}
-					onChange={props.onDateChange}
-					placeholderText="Click to select a date" 
-				/>
-				</label><br />
-				<label>
-					Card Number:
-				<input 
-					onChange={props.onChange} 
-					type="number" 
-					name="card_number" 
-					value={props.formData.card_number}
-					 />
-				</label><br />
-				<Button positive type="submit">{props.type}</Button>
-        </form>
-    )
+
+	return (
+		<Form onSubmit={props.onSubmit}>
+			<Form.Input
+				fluid label='Name'
+				name='name'
+				placeholder='Subscription Name'
+				onChange={props.onChange}
+				value={props.formData.name}
+			/>
+			<Form.Select
+				fluid label='Category'
+				name='category'
+				options={selectOptions}
+				placeholder='Select Category'
+				onChange={props.onSelect}
+				value={props.formData.category}
+			/>
+			<Form.Input
+				fluid label='Price'
+				placeholder='Monthly Payment'
+				name='price'
+				type='number'
+				onChange={props.onChange}
+				value={props.formData.price}
+			/>
+			<Form.Input
+				fluid label='Website'
+				placeholder="Website"
+				name='website'
+				onChange={props.onChange}
+				value={props.formData.website}
+			/>
+			<Form.Input
+				fluid label='Card Number'
+				placeholder='4 digits of the card'
+				name='card_number'
+				type='number'
+				onChange={props.onChange}
+				value={props.formData.card_number}
+			/>
+			<DateInput
+				fluid label='Date'
+				placeholder="Click to select a date"
+				onChange={props.onDateChange}
+				value={props.formData.due_date}
+			/>
+
+			<Button positive type="submit">{props.type}</Button>
+		</Form>
+	)
 }
 
 export default SubscriptionForm

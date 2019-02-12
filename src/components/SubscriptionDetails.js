@@ -3,8 +3,8 @@ import React from 'react'
 const SubscriptionDetails = props => {
     //renders null on the first load before fetch request to avoid an error
     if (props.subscriptionData) {
-         const {name, category, price, website, card_number, due_date } = props.subscriptionData
-         return(
+        const { name, category, price, website, card_number, due_date } = props.subscriptionData
+        return (
             <div>
                 <h1>Name: {name}</h1>
                 <h3>Category: {category}</h3>
@@ -16,10 +16,10 @@ const SubscriptionDetails = props => {
                 <button onClick={() => props.onCancelClick(props.subscriptionData)}>Cancel</button>
             </div>
         )
-    }else{
+    } else {
         return null
     }
-    
+
 }
 
 export default SubscriptionDetails

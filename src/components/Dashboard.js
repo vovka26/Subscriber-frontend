@@ -1,9 +1,19 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import DoughnutChart from './DoughnutChart';
+import BarChart from './BarChart'
+import '../Dashboard.css'
+import { Checkbox } from 'semantic-ui-react'
 
 class Dashboard extends PureComponent {
+	state = {
+		checked: false
+	}
 
-    getRandomColor = () => {
+	handleSliderChange = () => {
+		this.setState({ checked: !this.state.checked })
+	}
+
+	getRandomColor = () => {
 		const hex = Math.floor(Math.random() * 0xFFFFFF)
 		return "#" + ("000000" + hex.toString(16)).substr(-6)
 	}
@@ -11,16 +21,16 @@ class Dashboard extends PureComponent {
 	data = () => {
 		const labels = []
 		const categoriesAmount = []
-		
+
 		this.props.subscriptions.map(subs => {
 			let foundCategory = categoriesAmount.find(cat => cat[subs.category])
 			if (foundCategory) {
 				foundCategory[subs.category] += subs.price
-			}else{
+			} else {
 				labels.push(subs.category)
-				categoriesAmount.push({[subs.category]: subs.price})
-            }
-            return null
+				categoriesAmount.push({ [subs.category]: subs.price })
+			}
+			return null
 		})
 
 		const amounts = categoriesAmount.map(catAmt => Object.values(catAmt)).flat()
@@ -37,21 +47,40 @@ class Dashboard extends PureComponent {
 			]
 		}
 		return data;
-    }
+	}
 
-    render(){
-        return (
-            <div>
-                {this.props.subscriptions ? 
-                <DoughnutChart 
-                    subscriptions={this.props.subscriptions}
-                    data={this.data()}
-                />
-                :
-                null}
-            </div>
-        )
-    }
+	render() {
+		if (this.props.subscriptions) {
+			return (
+				<Fragment>
+					<div className='ui grid centered'>
+						Bar Chart
+						<Checkbox
+							className='slider'
+							slider
+							checked={this.state.checked}
+							onClick={this.handleSliderChange}
+						/>
+						Doughnut Chart
+					</div>
+					{this.state.checked ?
+						<DoughnutChart
+							subscriptions={this.props.subscriptions}
+							data={this.data()}
+						/>
+						:
+						<BarChart
+							subscriptions={this.props.subscriptions}
+							data={this.data()}
+						/>
+					}
+				</Fragment>
+			)
+		} else {
+			return null
+		}
+
+	}
 }
 
 export default Dashboard

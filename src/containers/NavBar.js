@@ -1,6 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import {Menu} from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 const NavBar = () => {
