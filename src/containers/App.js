@@ -5,14 +5,14 @@ import NavBar from './NavBar';
 import Main from './Main';
 import About from './About'
 import Login from '../components/Login'
-import '../public/favicon.svg';
 
 
 
 class App extends Component {
 	state = {
         username: '',
-        password: ''
+		password: '',
+		loginButton: true
 	}
 	
 	setInfo = (e, {name, value}) => {
@@ -22,17 +22,23 @@ class App extends Component {
 	}
 
 	onLoginSubmit = () => {
-		console.log('submitting ', this.state.username, this.state.password)
+		this.setState({
+			loginButton: false
+		})
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<NavBar />
+				<NavBar 
+					loginStatus={this.state.loginButton}
+					username={this.state.username}
+				/>
 				<Switch>
 					<Route path='/login' render={() => 
 						<Login 
 							setField={this.setInfo} 
+							goToSubscriptions={this.goToSubscriptions}
 							onSubmit={this.onLoginSubmit}
 						/>
 					} />

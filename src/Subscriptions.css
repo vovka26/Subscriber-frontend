@@ -6,6 +6,7 @@
     width: 60%;
     margin: auto;
     margin-bottom: 2%;
+    background-color: #ffffffd9;
 }
 
 div.upcoming-payments-div {
@@ -26,7 +27,7 @@ div.ui.grid.centered.upcoming-payments-details {
 }
 
 .subscription-list-container {
-    background-color: #ffffffd9;
+   
 }
 
 .subscription-details {

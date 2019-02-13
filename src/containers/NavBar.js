@@ -24,13 +24,22 @@ const NavBar = (props) => {
                 Subscriptions
             </Menu.Item>
             <Menu.Item position='right'>
-                <Button 
+                {props.loginStatus ? 
+                    <Button 
                     primary
                     as={Link}
                     to='/login'
-                >
-                    Login
-                </Button>
+                    >
+                        Login
+                    </Button>
+                    :
+                    <div>
+                        Hey, {props.username}
+                    </div>
+            
+            
+                }
+                
             </Menu.Item>
         </Menu>
     )
