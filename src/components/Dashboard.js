@@ -41,6 +41,7 @@ class Dashboard extends PureComponent {
 			datasets: [
 				{
 					data: amounts,
+					label: 'All Subscriptions',
 					backgroundColor: backgroundColors,
 					hoverBackgroundColor: backgroundColors
 				}
