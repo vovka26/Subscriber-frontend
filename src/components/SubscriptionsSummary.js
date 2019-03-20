@@ -12,7 +12,6 @@ const TotalSpending = (props) => {
         })
         const upComingDates = []
         filteredData.map(subscription => (
-            // debugger
             upComingDates.push(`${subscription.name} on ${getMonth(subscription.due_date)}, ${getDay(subscription.due_date)}`)
         ))
         return upComingDates

@@ -28,6 +28,8 @@ class Main extends PureComponent {
             .then(data => this.setState({ subscriptions: data }))
     }
 
+
+
     createNewSubscription = (subscriptionData) => {
         fetch(subscriptionsApi, {
             method: 'POST',
@@ -213,6 +215,7 @@ class Main extends PureComponent {
                             formData={this.state}
                             onDateChange={this.onDateChange}
                             onSelect={this.onSelectCategory}
+                            clearForm={this.clearForm}
                             type='Create'
                         />
                     )
@@ -242,6 +245,7 @@ class Main extends PureComponent {
                             onSubmit={this.onFormEdit}
                             formData={this.state}
                             onDateChange={this.onDateChange}
+                            clearForm={this.clearForm}
                             type='Save'
                         />
                     )
