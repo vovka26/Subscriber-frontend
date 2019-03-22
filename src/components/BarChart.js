@@ -2,7 +2,6 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const BarChart = (props) => {
-  debugger
   return (
     <div>
       <h2 className='chart-text'>Category Spendings</h2>

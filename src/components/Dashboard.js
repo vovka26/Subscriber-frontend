@@ -51,8 +51,8 @@ class Dashboard extends PureComponent {
 	}
 
 	render() {
-		if (this.props.subscriptions) {
-			return (
+		return (
+			this.props.subscriptions ?
 				<Fragment>
 					<div className='dashboard-chart'>
 						<div className='ui grid centered'>
@@ -79,11 +79,9 @@ class Dashboard extends PureComponent {
 						}
 					</div>
 				</Fragment>
-			)
-		} else {
-			return null
-		}
-
+				:
+				null
+		)
 	}
 }
 
