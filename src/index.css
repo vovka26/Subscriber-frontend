@@ -1,5 +1,5 @@
 body {
-   background-image: url('app-background.jpg');
+   background-image: url('./images/app-background.jpg');
    background-size: cover;
 }
 
