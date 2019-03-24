@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
-import '../SubscriptionForm.css'
 
 
 const selectOptions = [

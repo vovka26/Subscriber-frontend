@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, Button } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
-import '../App.css'
 import logo from '../images/logo.png'
 
 

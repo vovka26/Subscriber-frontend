@@ -1,7 +1,6 @@
 import React from 'react'
 import {Image} from 'semantic-ui-react'
 import logoImage from '../images/logo-index.png'
-import '../App.css'
 
 const About = () => {
     return(

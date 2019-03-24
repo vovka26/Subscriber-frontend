@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react'
 import { Transition, Button } from 'semantic-ui-react'
-import '../Subscriptions.css'
 
 class UpcomingPayments extends PureComponent {
     state = { visible: false }

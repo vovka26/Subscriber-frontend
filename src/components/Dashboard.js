@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
 import DoughnutChart from './DoughnutChart';
 import BarChart from './BarChart'
-import '../Dashboard.css'
 import { Checkbox } from 'semantic-ui-react'
 
 class Dashboard extends PureComponent {

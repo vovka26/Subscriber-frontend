@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react'
 import {Form, Button} from 'semantic-ui-react'
-import '../Login.css'
 
 class Login extends PureComponent {
     render(){

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import SubscriptionCard from '../components/SubscriptionCard'
 import { Table, Button } from 'semantic-ui-react'
 import SubscriptionsSummary from '../components/SubscriptionsSummary';
-import '../Subscriptions.css'
 
 const SubscriptionList = (props) => {
     return (
