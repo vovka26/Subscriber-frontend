@@ -8,7 +8,14 @@ import logo from '../images/logo.png'
 const NavBar = (props) => {
     return (
         <Menu stackable className='nav-bar'>
-            <Menu.Item position='left' as={NavLink} to='/about'><img className='logo-image' src={logo} alt='logo' /></Menu.Item>
+            <Menu.Item position='left' as={NavLink} to='/about'>
+                <img 
+                    className='logo-image-nav' 
+                    src={logo} 
+                    alt='logo' 
+                />
+                <div className='nav-bar-name'>SubscribR</div>
+            </Menu.Item>
 
             <Menu.Item
                 as={NavLink}

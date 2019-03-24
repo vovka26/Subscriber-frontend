@@ -34,11 +34,25 @@ html {
    margin-bottom: 3%;
 }
 
+@media screen and (min-width: 600px) {
+   .logo-image-container {
+      margin-left: 10%;
+   }
+ }
+ 
 .logo-image {
    margin-right: 35%;
    margin-top: 5%;
    opacity: 0.5;
    border-radius: 25%;
+}
+
+.logo-image-nav {
+   border-radius: 25%;
+}
+
+.nav-bar-name {
+   margin-left: 5%;
 }
 
 .login-form {

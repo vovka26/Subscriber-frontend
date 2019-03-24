@@ -28,8 +28,6 @@ class Main extends PureComponent {
             .then(data => this.setState({ subscriptions: data }))
     }
 
-
-
     createNewSubscription = (subscriptionData) => {
         fetch(subscriptionsApi, {
             method: 'POST',
@@ -180,14 +178,6 @@ class Main extends PureComponent {
         this.setFormStateOnEditClick(subscriptionData)
         this.redirectToNewUrl(`/subscriptions/${subscriptionData.id}/edit`)
     }
-
-    // sortSubscriptionsRows = (e) => {
-    //     const copyOfSubscriptionsArray = this.state.subscriptions.slice()
-    //     debugger
-    //     this.setState({
-
-    //     })
-    // }
 
     render() {
         return (

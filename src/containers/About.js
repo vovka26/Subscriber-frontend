@@ -4,11 +4,10 @@ import logoImage from '../images/logo-index.png'
 
 const About = () => {
     return(
-        <div className='ui grid centered'>
+        <div className='logo-image-container'>
             <Image 
                 className='logo-image'
                 src={logoImage}
-
             />
         </div>
     )
